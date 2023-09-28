@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+    .container{
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        margin: auto;
+        
+    }
+    .form{
+        border: 1px solid rgba(69, 68, 68, 0.4);
+        padding: 10px;
+        width: 40%;
+        margin: 15px;
+
+    }
+    .form input{
+        margin: 10px 0;
+    }
+    .form button{
+        background: #0fd5e7;
+        border: none;
+        padding: 10px ;
+        color: white;
+        box-shadow: 0 0 5px rgba(19, 19, 19, 0.5);
+
+    }
+    .table{
+        width: 60%;
+
+    }
+    .table table{
+        width: 100%;
+        padding: 10px;
+        margin: 15px;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    .table table tr{
+       height: 40px;
+ 
+    }
+    .table table a{
+        background: #0abed5;
+        text-decoration: none;
+        padding: 5px;
+        border-radius: 4px;
+        color: white;
+    }
+</style>
+
+<body>
+    <h1>CRUD FUNCRION IN DJANGO</h1>
+    <div class="container">
+        
+        <div class="form">
+            <h1>Add Students</h1>
+            <hr>
+            <form action="login/" method="post">
+                {% csrf_token %}
+                <label for="">Name</label><br>
+                 <input type="text" name="name"><br>
+                 <label for="">Address</label><br>
+                 <input type="text" name="address"><br>
+                <button type="submit">Add record</button>
+            </form>
+        </div>
+        <div class="table">
+            <table border="1">
+
+
+
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>status</th>
+                </tr>
+                {% for data in studentsData %}
+                <tr>
+
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.address }}</td>
+                    <td><a href="edit/{{ data.id }}">Edit</a>
+                        <a href="delete/{{ data.id }}">Delete</a>
+
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
